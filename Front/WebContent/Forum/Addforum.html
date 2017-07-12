@@ -2,9 +2,6 @@
 <head>
 <link rel="stylesheet"
 	href="Resources/bootstrap.css">
-	
-	
-	
 	<style>
 	::selection {
   background-color: #b5e2e7;
@@ -25,9 +22,9 @@ body {
 }
 
 #logbox {
-  padding: 4px;
-  margin: 100px auto;
-  width: 340px;
+  padding: 1px;
+  margin: 130px 300px;
+  width: 500px;
   background-color: rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
@@ -101,53 +98,23 @@ h1, input {
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
 
-
-.pass:-webkit-autofill {
-    -webkit-box-shadow: transparent;
-}
-
-
 	</style>
 </head>
 <body>
   <div class="container">
     <div class="col-md-6">
     <div id="logbox">
-      <form  method="post" ng-submit="control.submit()">
-        <h1>Join Us....!</h1>
-        <input name="user[name]" type="text" placeholder="What's your username?" pattern="^[\w]{3,16}$" autofocus="autofocus" ng-model="control.user.username" required="required" class="input pass"/>
-        
-        <input name="user[password]" type="password" placeholder="Choose a password" ng-model="control.user.password" required="required" class="input pass"/>
-        
-        <input name="user[address]" type="text" placeholder="Address" ng-model="control.user.address" required="required" class="input pass"/>
-        
-        <input name="user[email]" type="email" placeholder="Email address" ng-model="control.user.email" class="input pass"/>
-        
-         <input name="user[contact]" type="tel" placeholder="Contact" ng-model="control.user.contact" class="input pass"/>
-         
-        <input type="submit" name="submit" value="Sign me up!" class="inputButton"/>
+      <form  method="post" ng-submit="fcontrol.submit()">
+        <h1>Forum</h1>
+        <input name="" type="text" placeholder="Forum Name" pattern="^[\w]{3,16}$" autofocus="autofocus" ng-model="fcontrol.forum.forumname" required="required" class="input pass"/>
+		 <input name="" type="text" placeholder="Forum Content" pattern="^[\w]{3,16}$" autofocus="autofocus" ng-model="fcontrol.forum.forumcontent" required="required" class="input pass"/>
+		  <input type="submit" value="Create Forum" class="inputButton"/>
+       
         
       </form>
     </div>
    </div>
-   
-   
-   <div style="border-left:2px solid #fff;height:100%"></div>
-   
-   
-   <div class="col-md-6">
-    <div id="logbox">
-      <form id="signup" method="post" >
-        <h1>Login</h1>
-        <input name="user[email]" type="email" placeholder="enter your email" class="input pass"/>
-        
-        <input name="user[password]" type="password" placeholder="enter your password" required="required" class="input pass"/>
-        
-        <input type="submit" value="Sign me in!" class="inputButton"/>
-      
-      </form>
-    </div>
-    </div>
+
   </div>
 </body>
 </html>

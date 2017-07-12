@@ -10,14 +10,8 @@ app.controller('UserController',[
 						function($scope, UserService, $location, $rootScope,$cookieStore, $http) {
 							console.log("UserController...")
 							var self = this;
-							self.user = {
-								id : 'userId',
-								name : 'username',
-								password : 'password',
-								mobile : 'contact',
-								address : 'address',
-								isOnline : 'isonline',
-								role : 'role',
+							self.user = {id : '',	name : '',password : '',mobile : '',address : '',isOnline : '',
+								role : '',
 								errorCode : '',
 								errorMessage : ''
 							};
@@ -227,13 +221,13 @@ app.controller('UserController',[
 
 							self.reset = function() {
 								self.user = {
-									id : 'userId',
-									name : 'username',
-									password : 'password',
-									mobile : 'contact',
-									address : 'address',
-									email : 'email',
-									isOnline : 'isonline',
+									id : '',
+									name : '',
+									password : '',
+									mobile : '',
+									address : '',
+									email : '',
+									isOnline : '',
 									errorCode : '',
 									errorMessage : ''
 								};
