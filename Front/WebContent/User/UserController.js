@@ -1,36 +1,14 @@
 'use strict';
 
-app.controller('UserController',[
-						'$scope',
-						'UserService',
-						'$location',
-						/*'$rootScope',
-						'$cookieStore',*/
-						'$http',
-						function($scope, UserService, $location, $rootScope,$cookieStore, $http) {
+app.controller('UserController',['$scope','UserService','$location','$rootScope','$http',
+						function($scope, UserService, $location, $rootScope, $http) {
 							console.log("UserController...")
 							var self = this;
-							self.user = {id : '',	name : '',password : '',mobile : '',address : '',isOnline : '',
-								role : '',
-								errorCode : '',
-								errorMessage : ''
-							};
+							self.user = {userId : '',username : '',password : '',contact : '',address : '',isonline : '',role : ''/*,errorCode : '',errorMessage : ''*/};
 
 							self.userLoggedIn = "";
 
-							self.currentUser = {
-								id : '',
-								name : '',
-								password : '',
-								mobile : '',
-								address : '',
-
-								isOnline : '',
-								role : '',
-								errorCode : '',
-								errorMessage : ''
-
-							};
+							self.currentUser = {userId : '',username : '',password : '',contact : '',address : '',isonline : '',role : ''/*,errorCode : '',errorMessage : ''*/};
 
 							self.users = []; // json array
 
@@ -170,9 +148,9 @@ app.controller('UserController',[
 																.log('Current user : '
 																		+ self.user)
 														$rootScope.currentUser = self.user
-														$cookieStore.put(
+														/*$cookieStore.put(
 																'currentUser',
-																self.user);
+																self.user);*/
 
 														$http.defaults.headers.common['Authorization'] = 'Basic '
 																+ $rootScope.currentUser;
@@ -192,7 +170,7 @@ app.controller('UserController',[
 								console.log("logout")
 								self.userLoggedIn = "false"
 								$rootScope.currentUser = {};
-								$cookieStore.remove('currentUser');
+								//$cookieStore.remove('currentUser');
 								UserService.logout()
 								$location.path('/');
 
@@ -220,17 +198,7 @@ app.controller('UserController',[
 							};
 
 							self.reset = function() {
-								self.user = {
-									id : '',
-									name : '',
-									password : '',
-									mobile : '',
-									address : '',
-									email : '',
-									isOnline : '',
-									errorCode : '',
-									errorMessage : ''
-								};
+								self.user = {userId : '',username : '',password : '',contact : '',address : '',isonline : '',role : ''/*,errorCode : '',errorMessage : ''*/};
 								/*$scope.myForm.$setPristine();*/ // reset Form
 							};
 

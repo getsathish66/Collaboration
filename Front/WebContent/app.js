@@ -3,15 +3,22 @@ var app = angular.module("myApp", [ 'ngRoute' ]);
 app.config(function($routeProvider) {
 	$routeProvider
 
-	.when('/homepage', {
+	/*.when('/', {
 		templateUrl : 'User/Home.html'
 
-	})
+	})*/
 
-	.when('/Loginpage', {
-		templateUrl : 'User/Account.html',
+	.when('/Registerpage', {
+		templateUrl : 'User/Register.html',
 		controller : 'UserController',
-		controllerAs : 'control'
+		controllerAs : 'rc'
+
+	})
+	
+	.when('/Loginpage', {
+		templateUrl : 'User/Login.html',
+		controller : 'UserController',
+		controllerAs : 'lc'
 
 	})
 
