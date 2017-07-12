@@ -3,6 +3,9 @@ package com.niit.back.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,4 +85,23 @@ public class UserController {
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
 
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody User user, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User validUser = userDAO.login(user);
+		if (validUser == null) {
+			Error error = new Error("Invalid credentials.. please enter valid username and password");
+			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+		} else {
+			session.setAttribute("user", validUser);
+
+			System.out.println(validUser.getEmail());
+			System.out.println(validUser.getUsername());
+			User user1 = (User) session.getAttribute("user");
+			System.out.println(user1.getRole());
+			System.out.println(user1.getContact());
+			return new ResponseEntity<User>(validUser, HttpStatus.OK);
+		}
+	}
+	
 }
