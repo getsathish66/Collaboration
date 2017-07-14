@@ -6,7 +6,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 	console.log("blogService...")
 
-    var BASE_URL = 'http://localhost:8085/Restservices';
+    var BASE_URL = 'http://localhost:8081/Restservices/';
 
 
 
@@ -20,9 +20,9 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 		        AcceptedBlogs : AcceptedBlogs,
 
-/*				notAcceptedBlogs : notAcceptedBlogs,
-
-				accept: accept,*/
+/*
+ * notAcceptedBlogs : notAcceptedBlogs, accept: accept,
+ */
 
 		        deleteBlog:deleteBlog
 
@@ -38,7 +38,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 				console.log("calling fetchAllblogs ")
 
-				return $http.get(BASE_URL+'/Blog').then(function(response) {
+				return $http.get(BASE_URL+'/blog').then(function(response) {
 
 					return response.data;
 
@@ -52,7 +52,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 
 
-				return $http.get(BASE_URL + '/acceptedblog').then(
+				return $http.get(BASE_URL + '/blog').then(
 
 						function(response) {
 

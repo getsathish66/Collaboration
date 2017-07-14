@@ -1,12 +1,11 @@
-var app = angular.module("myApp", [ 'ngRoute' ]);
+var app = angular.module("myApp", [ 'ngRoute','ngCookies' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider
 
-	/*.when('/', {
-		templateUrl : 'User/Home.html'
-
-	})*/
+	.when('/', {
+		templateUrl : 'Blog/Viewblog.html'
+	})
 
 	.when('/Registerpage', {
 		templateUrl : 'User/Register.html',
@@ -28,6 +27,12 @@ app.config(function($routeProvider) {
 		controllerAs : 'bcontrol'
 	})
 
+	.when('/Viewblog', {
+		templateUrl : 'Blog/Viewblog.html',
+		controller : 'BlogController',
+		controllerAs : 'bcontrol'
+	})
+	
 	.when('/Addforum', {
 		templateUrl : 'Forum/Addforum.html',
 		controller : 'ForumController',

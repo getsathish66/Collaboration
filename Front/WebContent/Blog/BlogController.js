@@ -1,217 +1,206 @@
 'use strict';
 
-app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScope', '$http',
+app.controller('BlogController', [ '$scope', '$location', 'BlogService',
+		'$rootScope', '$http','$cookieStore',
 
-	function($scope, $location, BlogService,$rootScope,$http) {
+		function($scope, $location, BlogService, $rootScope, $http,$cookieStore) {
 
-	console.log("BlogController...")
+			console.log("BlogController...")
 
-	
+			var self = this;
 
-	var self = this;
+			self.blog = {
+				blogid : '',
+				blogname : '',
+				title : '',
+				status : '',
+				description : '',
+				createdate : '',
+				likes : '',
+				userid : ''
+			};
 
-	self.blog = {blogid : '',blogname:'',title : '',status : '',description : '',createdate : '',likes:'',userid:''};
+			self.blogs = [];
 
-	
+			self.submit = submit;
 
-	self.blogs = [];
+			
+			 self.edit = edit; self.remove = remove; self.reset = reset;
+			 self.get = get;
+			 
+			 fetchAllBlogs(); AcceptedBlogs(); reset();
+			 
+			function fetchAllBlogs() {
 
-	self.submit = submit;
+				BlogService.fetchAllBlogs()
 
-   /* self.edit = edit;
+				.then(
 
-    self.remove = remove;
+				function(d) {
 
-    self.reset = reset;
+					self.blogs = d;
 
-    self.get = get;
+				},
 
-    
+				function(errResponse) {
 
-    fetchAllBlogs();
+					console.error('Error while fetching Blogs');
 
-    AcceptedBlogs();
+				}
 
-    reset();
-*/
-    function fetchAllBlogs(){
+				);
 
-    	BlogService.fetchAllBlogs()
+			}
 
-            .then(
+			function AcceptedBlogs() {
 
-            function(d) {
+				console.log("AcceptedBlogs...")
 
-                self.blogs = d;
+				BlogService.AcceptedBlogs().then(function(d) {
 
-            },
+					// alert("Thank you for creating message")
 
-            function(errResponse){
+					console.log(d)
 
-                console.error('Error while fetching Blogs');
+					self.blogsAccept = d;
 
-            }
+				},
 
-        );
+				function(errResponse) {
 
-    }
+					console.error('Error while creating AcceptedBlogs.');
 
-    function AcceptedBlogs() {
+				});
 
-		console.log("AcceptedBlogs...")
+			}
+			;
 
-		BlogService.AcceptedBlogs().then(function(d) {
+			function createBlog(blog) {
 
-							//alert("Thank you for creating message")
+				console.log("createBlog...")
 
-			console.log(d)
+				BlogService.createBlog(blog).then(function(d) {
 
-							self.blogsAccept = d;
+					alert("Thank you for creating message")
 
-						},
+					$location.path("/login")
 
-						function(errResponse) {
+				}, function(errResponse) {
 
-							console.error('Error while creating AcceptedBlogs.');
+					console.error('Error while creating Blog.');
 
-						});
+				});
 
-	};
+			}
+			;
 
-    function createBlog(blog){
+			function deleteblog(id) {
 
-		console.log("createBlog...")
+				BlogService.deleteBlog(id)
 
-		BlogService.createBlog(blog).then(function(d) {
+				.then(
 
-			alert("Thank you for creating message")
+				fetchAllBlogs,
 
-			$location.path("/login")
+				function(errResponse) {
 
-		}, function(errResponse) {
+					console.error('Error while deleting jobs');
 
-			console.error('Error while creating Blog.');
+				}
 
-		});
+				);
 
-	};
+			}
 
+			function edit(id) {
 
+				console.log('id to be edited', id);
 
-    function deleteblog(id){
+				for (var i = 0; i < self.blogs.length; i++) {
 
-    	BlogService.deleteBlog(id)
+					if (self.blogs[i].blogid === id) {
 
-            .then(
+						self.blog = angular.copy(self.blogs[i]);
 
-            		fetchAllBlogs,
+						break;
 
-            function(errResponse){
+					}
 
-                console.error('Error while deleting jobs');
+				}
 
-            }
+			}
 
-        );
+			function updateBlog(blog, id) {
 
-    }
+				BlogService.updateBlog(blog, id)
 
-    
+				.then(
 
-    function edit(id){
+				fetchAllBlogs,
 
-        console.log('id to be edited', id);
+				function(errResponse) {
 
-        for(var i = 0; i < self.blogs.length; i++){
+					console.error('Error while updating jobs');
 
-            if(self.blogs[i].blogid === id) {
+				}
 
-                self.blog = angular.copy(self.blogs[i]);
+				);
 
-                break;
+			}
 
-            }
+			function remove(id) {
 
-        }
+				console.log('id to be deleted', id);
 
-    }
+				if (self.blog.blogid === id) {// clean form if the user to be
+												// deleted is shown there.
 
-    function updateBlog(blog, id){
+					reset();
 
-    	BlogService.updateBlog(blog, id)
+				}
 
-            .then(
+				deleteblog(id);
 
-            		fetchAllBlogs,
+			}
 
-            function(errResponse){
+			function get(blog) {
 
-                console.error('Error while updating jobs');
+				$scope.bc = blog;
 
-            }
+				console.log($scope.bc);
 
-        );
+				$rootScope.blog = $scope.bc;
 
-    }
+				$location.path("viewBlog");
 
- 
+			}
 
-    function remove(id){
+			function submit() {
 
-        console.log('id to be deleted', id);
+				console.log('Creating New Blog', self.blog);
 
-        if(self.blog.blogid === id) {//clean form if the user to be deleted is shown there.
+				createBlog(self.blog);
 
-            reset();
+			}
+			;
 
-        }
+			function reset() {
 
-        deleteblog(id);
+				self.blog = {
+					blogid : 'null',
+					blogname : '',
+					title : '',
+					status : '',
+					description : '',
+					createdate : '',
+					username : '',
+					likes : '',
+					userid : ''
+				};
 
-    }
+				// $scope.myform.$setPristine(); //reset Form
 
- 
+			}
+			;
 
-    function get(blog) {
-
-    	$scope.bc=blog;
-
-		console.log($scope.bc);
-
-		$rootScope.blog=$scope.bc;
-
-		$location.path("viewBlog");
-
-    	
-
-	}
-
-    function submit() {
-
-        console.log('Creating New Blog', self.blog);
-
-           createBlog(self.blog);
-
-       
-
-   };
-
-    function reset(){
-
-    	self.blog={blogid : 'null',blogname:'',title : '',status : '',description : '',createdate : '',username:'',likes:'',userid:''};
-
-
-
-       //$scope.myform.$setPristine(); //reset Form
-
-    };
-
-    
-
-    
-
-    
-
-	
-
-}]);
+		} ]);

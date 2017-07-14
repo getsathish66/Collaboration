@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('UserController',['$scope','UserService','$location','$rootScope','$http',
-						function($scope, UserService, $location, $rootScope, $http) {
+app.controller('UserController',['$scope','UserService','$location','$rootScope','$http','$cookieStore',
+						function($scope, UserService, $location, $rootScope, $http,$cookieStore) {
 							console.log("UserController...")
 							var self = this;
 							self.user = {userId : '',username : '',password : '',contact : '',address : '',isonline : '',role : ''/*,errorCode : '',errorMessage : ''*/};
@@ -148,9 +148,9 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 																.log('Current user : '
 																		+ self.user)
 														$rootScope.currentUser = self.user
-														/*$cookieStore.put(
+													    $cookieStore.put(
 																'currentUser',
-																self.user);*/
+																self.user);
 
 														$http.defaults.headers.common['Authorization'] = 'Basic '
 																+ $rootScope.currentUser;
@@ -170,7 +170,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								console.log("logout")
 								self.userLoggedIn = "false"
 								$rootScope.currentUser = {};
-								//$cookieStore.remove('currentUser');
+								$cookieStore.remove('currentUser');
 								UserService.logout()
 								$location.path('/');
 
