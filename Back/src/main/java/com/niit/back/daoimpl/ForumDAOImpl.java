@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,5 +55,25 @@ public class ForumDAOImpl implements ForumDAO {
 	public Forum saveOrUpdate(Forum forum) {
 		sessionFactory.getCurrentSession().saveOrUpdate(forum);
         return forum;
+	}
+	
+	@Transactional
+	public List<Forum> getAcceptedList() {
+		String hql = "from Forum where status = " + "'A'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+	}
+	@Transactional
+	public List<Forum> getNotAcceptedList() {
+		String hql = "from Forum where status = " + "'NA'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+
 	}
 }
