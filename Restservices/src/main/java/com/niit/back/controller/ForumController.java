@@ -79,5 +79,14 @@ public class ForumController {
 
 		return new ResponseEntity(forum, HttpStatus.OK);
 	}
-
+	@GetMapping("/acceptedforum")
+	public ResponseEntity<List<Forum>> acceptedForumsList() {
+		List<Forum> listforum = forumDAO.getAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedforum")
+	public ResponseEntity<List<Forum>> notAcceptedForumList() {
+		List<Forum> listforum = forumDAO.getNotAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
 }
