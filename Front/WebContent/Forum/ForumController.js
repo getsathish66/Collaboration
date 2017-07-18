@@ -18,7 +18,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 
 	self.submit = submit;
 
-   /* self.edit = edit;
+ self.edit = edit;
 
     self.remove = remove;
 
@@ -31,9 +31,11 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
     fetchAllForums();
 
     AcceptedForums();
+    
+    notAcceptedForums();
 
     reset();
-*/
+
     function fetchAllForums(){
 
     	ForumService.fetchAllForums()
@@ -76,6 +78,19 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 
 						});
 
+	};
+	
+	function notAcceptedForums() {
+		console.log("notAcceptedForums...")
+		ForumService.notAcceptedForums().then(function(d) {
+						
+			console.log(d)
+							self.forumsNotAccepted = d;
+							console.log(self.forumsNotAccepted)
+						},
+						function(errResponse) {
+							console.error('Error while creating notAcceptedForums.');
+						});
 	};
 
     function createForum(forum){

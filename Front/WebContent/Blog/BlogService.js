@@ -6,7 +6,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 	console.log("blogService...")
 
-    var BASE_URL = 'http://localhost:8081/Restservices/';
+    var BASE_URL = 'http://localhost:8082/Restservices/';
 
 
 
@@ -20,9 +20,11 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 		        AcceptedBlogs : AcceptedBlogs,
 
-/*
- * notAcceptedBlogs : notAcceptedBlogs, accept: accept,
- */
+
+		        notAcceptedBlogs : notAcceptedBlogs, 
+		        
+		        accept: accept,
+ 
 
 		        deleteBlog:deleteBlog
 
@@ -52,7 +54,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 
 
-				return $http.get(BASE_URL + '/blog').then(
+				return $http.get(BASE_URL + '/acceptedblog').then(
 
 						function(response) {
 
@@ -66,7 +68,16 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 			};
 
-			
+			function notAcceptedBlogs() {
+				console.log("calling notAcceptedBlogs ")
+
+				return $http.get(BASE_URL +'/notAcceptedblog').then(
+						function(response) {
+							console.log(response)
+							return response.data;
+
+						}, null);
+			};
 
 			function createBlog(Blog) {
 
@@ -118,7 +129,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 		    	console.log("Deleting Blog Request");
 
-				return $http.delete(BASE_URL + '/deleteBlog/'+id).then(function(response){
+				return $http.delete(BASE_URL + '/blog'+id).then(function(response){
 
 						
 
@@ -134,6 +145,17 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 		
 
+			};
+			
+			function accept(Blog) {
+				console.log("calling accept Blogs ")
+				return $http.put(BASE_URL +'/acceptBlog', Blog) 
+				.then(function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.error('Error while accepting Blog');
+					return $q.reject(errResponse);
+				});
 			};
 
 

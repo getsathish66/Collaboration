@@ -6,7 +6,7 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 	console.log("forumService...")
 
-    var BASE_URL = 'http://localhost:8085/Restservices';
+    var BASE_URL = 'http://localhost:8082/Restservices';
 
 
 
@@ -20,9 +20,9 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 		        AcceptedForums : AcceptedForums,
 
-/*				notAcceptedForums : notAcceptedForums,
+		        notAcceptedForums : notAcceptedForums,
 
-				accept: accept,*/
+				//accept: accept,
 
 		        deleteForum:deleteForum
 
@@ -38,7 +38,7 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 				console.log("calling fetchAllforums ")
 
-				return $http.get(BASE_URL+'/Forum').then(function(response) {
+				return $http.get(BASE_URL+'/forum').then(function(response) {
 
 					return response.data;
 
@@ -66,7 +66,16 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 			};
 
-			
+			function notAcceptedForums() {
+				console.log("calling notAcceptedForums ")
+
+				return $http.get(BASE_URL + '/notAcceptedforum').then(
+						function(response) {
+							console.log(response)
+							return response.data;
+
+						}, null);
+			};
 
 			function createForum(Forum) {
 

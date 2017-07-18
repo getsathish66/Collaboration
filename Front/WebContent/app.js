@@ -2,11 +2,10 @@ var app = angular.module("myApp", [ 'ngRoute','ngCookies' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider
+	
+	
 
-	.when('/', {
-		templateUrl : 'Blog/Viewblog.html'
-	})
-
+	
 	.when('/Registerpage', {
 		templateUrl : 'User/Register.html',
 		controller : 'UserController',
@@ -38,7 +37,35 @@ app.config(function($routeProvider) {
 		controller : 'ForumController',
 		controllerAs : 'fcontrol'
 	})
+	
+	.when('/Viewforum', {
+		templateUrl : 'Forum/Viewforum.html',
+		controller : 'ForumController',
+		controllerAs : 'fcontrol'
+	})
+	
+	.when('/Addjobs', {
+		templateUrl : 'Jobs/Jobform.html',
+		controller : 'JobController',
+		controllerAs : 'jcontrol'
+	})
 
+	.when('/adminBlog', {
+		templateUrl : 'Admin/Blog.html',
+		controller : 'BlogController',
+		controllerAs : 'bcc'
+	})
+	
+	.when('/adminForum', {
+		templateUrl : 'Admin/Forum.html',
+		controller : 'ForumController',
+		controllerAs : 'fcc'
+	})
+	
+	.when('/admin', {
+		templateUrl : 'Admin/Adminhome.html'
+
+	})
 	
 	.otherwise({
 		redirectTo : '/'

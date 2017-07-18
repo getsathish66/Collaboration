@@ -1,9 +1,15 @@
 'use strict';
 
-app.controller('BlogController', [ '$scope', '$location', 'BlogService',
-		'$rootScope', '$http','$cookieStore',
+app.controller('BlogController', [
+		'$scope',
+		'$location',
+		'BlogService',
+		'$rootScope',
+		'$http',
+		'$cookieStore',
 
-		function($scope, $location, BlogService, $rootScope, $http,$cookieStore) {
+		function($scope, $location, BlogService, $rootScope, $http,
+				$cookieStore) {
 
 			console.log("BlogController...")
 
@@ -24,12 +30,21 @@ app.controller('BlogController', [ '$scope', '$location', 'BlogService',
 
 			self.submit = submit;
 
+			self.edit = edit;
+			self.remove = remove;
+			self.reset = reset;
+			self.get = get;
+			self.accept = accept;
+			self.adminGet = adminGet;
+			self.rejectBlog = rejectBlog;
 			
-			 self.edit = edit; self.remove = remove; self.reset = reset;
-			 self.get = get;
-			 
-			 fetchAllBlogs(); AcceptedBlogs(); reset();
-			 
+			fetchAllBlogs();
+			AcceptedBlogs();
+			notAcceptedBlogs();
+			accept();
+			reset();
+			//adminGet();
+			
 			function fetchAllBlogs() {
 
 				BlogService.fetchAllBlogs()
@@ -72,6 +87,19 @@ app.controller('BlogController', [ '$scope', '$location', 'BlogService',
 
 				});
 
+			}
+			;
+
+			function notAcceptedBlogs() {
+				console.log("notAcceptedBlogs...")
+				BlogService.notAcceptedBlogs().then(function(d) {
+
+					console.log(d)
+					self.blogsNotAccepted = d;
+					console.log(self.blogsNotAccepted)
+				}, function(errResponse) {
+					console.error('Error while creating notAcceptedBlogs.');
+				});
 			}
 			;
 
@@ -153,7 +181,7 @@ app.controller('BlogController', [ '$scope', '$location', 'BlogService',
 				console.log('id to be deleted', id);
 
 				if (self.blog.blogid === id) {// clean form if the user to be
-												// deleted is shown there.
+					// deleted is shown there.
 
 					reset();
 
@@ -183,6 +211,35 @@ app.controller('BlogController', [ '$scope', '$location', 'BlogService',
 
 			}
 			;
+
+			function accept(ViewBlogs) {
+				{
+					console.log('accept the Blog details')
+
+					BlogService.accept(ViewBlogs);
+					console.log(ViewBlogs)
+					$location.path("/admin")
+				}
+
+			}
+			;
+
+			function adminGet(blog) {
+				$scope.bvv = blog;
+				console.log($scope.bvv);
+				/*$rootScope.ViewBlog = $scope.bvv;*/
+				$location.path('/adminBlog')
+			}
+			
+			function rejectBlog(ViewBlogs){
+		    	BlogService.deleteBlogRequest(viewBlogs.blogid).then(function(d) {
+					self.deleteBlogRequestId = d;		    			
+					console.log(self.deleteBlogRequestId);
+		    			$location.path("/admin")
+		    	}, function(errResponse){
+		                console.error('Error while deleting BlogRequest');
+		            });
+		    };
 
 			function reset() {
 

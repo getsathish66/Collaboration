@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+.abc {
+	padding-left: 1.5em;
+	-moz-box-shadow: 0 0 10px #ccc;
+	-webkit-box-shadow: 0 0 10px #ccc;
+	box-shadow: 0 0 10px #ccc;
+	background-color:white ;
+}
+</style>
+</head>
+<body>
+
+	<div class="column-content-region col-sm-3" style="margin-left: 4em;"
+		ng-controller="BlogController as bcc">
+		<h3>Blogs</h3>
+		<div ng-init="bcc.notAcceptedBlogs()">
+
+			<div class="abc" ng-repeat="bna in bcc.blogsNotAccepted">
+				<h3>Title:{{bna.title}}</h3>
+				<h6>Authored By:{{bna.username}}</h6>
+				<h6>
+					Created On:<span ng-bind="bna.timeStamp"></span>
+				</h6>
+				<h6>Status:{{bna.status}}</h6>
+				<h4>Desc:{{bna.description}}</h4>
+				<br> <a href="" ng-click="bcc.adminGet(bna)"><input
+					type="button" name="button" value="Read More" /></a>
+
+				<hr>
+			</div>
+		</div>
+	</div>
+
+	<div class="column-content-region col-sm-3"
+		ng-controller="ForumController as fcc">
+		<h3>Forums</h3>
+		<div ng-init="fcc.notAcceptedForums()">
+			<div class="abc" ng-repeat="for in fcc.forumsNotAccepted">
+				<h3>
+					<span ng-bind="for.forumname"></span>
+				</h3>
+				<h6>
+					Created On:<span ng-bind="for.timeStamp"></span>
+				</h6>
+				Status: {{for.status}}
+				<h4>
+					<span ng-bind="for.forumcontent" | limitTo: '5'></span>
+				</h4>
+				<a href="" ng-click="fcc.adminGet(for)"><input type="button"
+					name="button" value="Read More" /></a>
+
+				<hr>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

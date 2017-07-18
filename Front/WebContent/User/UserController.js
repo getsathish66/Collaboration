@@ -114,48 +114,35 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							self.authenticate = function(user) {
 								console.log("authenticate...")
-								UserService
-										.authenticate(user)
-										.then(
-
-												function(d) {
-
+								UserService.authenticate(user).then(function(d) {
 													self.user = d;
-													console
-															.log("user.errorCode: "
-																	+ self.user.errorCode)
+													console.log("user.errorCode: "+ self.user.errorCode)
 													if (self.user.errorCode == "404")
-
 													{
 														alert(self.user.errorMessage)
-
 														self.user.id = "";
 														self.user.password = "";
-
-													} else { // valid
-														// credentials
-														console
-																.log("Valid credentials. Navigating to home page")
-														self.userLoggedIn = "true"
-														if (self.user.role == "admin") {
-															console
-																	.log("You are admin")
-															self
-																	.fetchAllUsers();
-														}
-
-														console
-																.log('Current user : '
-																		+ self.user)
+													} else { 
+														console.log("Valid credentials. Navigating to home page")
+														
+														console.log('Current user : '+ self.user)
 														$rootScope.currentUser = self.user
-													    $cookieStore.put(
-																'currentUser',
-																self.user);
+													    $cookieStore.put('currentUser',self.user);
 
 														$http.defaults.headers.common['Authorization'] = 'Basic '
 																+ $rootScope.currentUser;
-														$location.path('/');
+														
+														self.userLoggedIn = "true"
+														if (self.user.role == "admin") {
+															console.log("You are admin")
+															$location.path('/admin')															
+														}else{
+															console.log("You are User")
+															$location.path('/')
+														}
 
+														
+													
 													}
 
 												},
