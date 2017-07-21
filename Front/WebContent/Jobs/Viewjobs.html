@@ -215,7 +215,7 @@ box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 </head>
 <body>
 <!--For our animations to look good, the animated elements need to be able to be scrolled to. For this example I've added dummy content to the top -->
-<div class="main-container" ng-repeat="u in bcontrol.blogsAccept">
+<div class="main-container" ng-repeat="u in jcontrol.jobs">
  
 
   <div class="container cf">
@@ -224,17 +224,15 @@ box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
       <div class="header">
        
         <div class="right">
-          <h3 ng-bind="u.blogname"></h3>
-          <h4 ng-bind="u.title"></h4>
+          <h3 ng-bind="u.jobprofile"></h3>
+          <h4 ng-bind="u.qualification"></h4>
         </div>
       </div>
-      <div class="content"><i class="fa fa-quote-left"></i> <span ng-bind="u.description"></span> <i class="fa fa-quote-right"></i>
+      <div class="content"><i class="fa fa-quote-left"></i> <span ng-bind="u.jobdesc"></span> <i class="fa fa-quote-right"></i>
       </div>
-   <a href="" ng-click="bcontrol.blogDetails(u)"><input
-					type="button" name="button" value="Read More" /></a>
+      <a style="float:right" ng-click="blog.remove(u.id)" value="remove" > remove </a>
     </div>
   </div>
   </div>
-  
 </body>
 </html>

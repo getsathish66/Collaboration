@@ -6,7 +6,7 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 	console.log("forumService...")
 
-    var BASE_URL = 'http://localhost:8082/Restservices';
+    var BASE_URL = 'http://localhost:8083/Restservices';
 
 
 

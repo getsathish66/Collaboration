@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('UserController',['$scope','UserService','$location','$rootScope','$http','$cookieStore',
-						function($scope, UserService, $location, $rootScope, $http,$cookieStore) {
+app.controller('UserController',['$scope','UserService','$location','$rootScope','$http','$cookieStore','$cookies',
+						function($scope, UserService, $location, $rootScope, $http,$cookieStore,$cookies) {
 							console.log("UserController...")
 							var self = this;
 							self.user = {userId : '',username : '',password : '',contact : '',address : '',isonline : '',role : ''/*,errorCode : '',errorMessage : ''*/};

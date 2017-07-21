@@ -137,6 +137,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 								console.log('submit a new job', self.job);
 								JobService.postAJob(job).then(function(d) {
 								alert("You successfully posted the job")
+								$location.path('/');
 								}, function(errResponse) {
 									console.error('Error while posting job.');
 								});
@@ -169,5 +170,6 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 								};
 								//$scope.myForm.$setPristine(); // reset Form
 							};
-
+							
+							
 						} ]);

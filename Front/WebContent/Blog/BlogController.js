@@ -35,13 +35,14 @@ app.controller('BlogController', [
 			self.reset = reset;
 			self.get = get;
 			self.accept = accept;
-			self.adminGet = adminGet;
+			self.adminDetails = adminDetails;
+			self.blogDetails = blogDetails;
 			self.rejectBlog = rejectBlog;
 			
 			fetchAllBlogs();
 			AcceptedBlogs();
 			notAcceptedBlogs();
-			accept();
+			//accept();
 			reset();
 			//adminGet();
 			
@@ -224,15 +225,22 @@ app.controller('BlogController', [
 			}
 			;
 
-			function adminGet(blog) {
+			function adminDetails(blog) {
 				$scope.bvv = blog;
 				console.log($scope.bvv);
-				/*$rootScope.ViewBlog = $scope.bvv;*/
+				$rootScope.ViewBlog = $scope.bvv;
 				$location.path('/adminBlog')
 			}
 			
-			function rejectBlog(ViewBlogs){
-		    	BlogService.deleteBlogRequest(viewBlogs.blogid).then(function(d) {
+			function blogDetails(blog) {
+				$scope.bvv = blog;
+				console.log($scope.bvv);
+				$rootScope.ViewBlog = $scope.bvv;
+				$location.path('/blogdetails')
+			}
+			
+			function rejectBlog(ViewBlog){
+		    	BlogService.deleteBlog(ViewBlog.blogid).then(function(d) {
 					self.deleteBlogRequestId = d;		    			
 					console.log(self.deleteBlogRequestId);
 		    			$location.path("/admin")

@@ -6,7 +6,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 	console.log("blogService...")
 
-    var BASE_URL = 'http://localhost:8082/Restservices/';
+    var BASE_URL = 'http://localhost:8083/Restservices/';
 
 
 
@@ -125,13 +125,11 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 		 
 
-		    function deleteBlog(id) {
+		    function deleteBlog(blogid) {
 
 		    	console.log("Deleting Blog Request");
 
-				return $http.delete(BASE_URL + '/blog'+id).then(function(response){
-
-						
+				return $http.delete(BASE_URL + '/blog/'+blogid).then(function(response){
 
 					return response.data;
 
