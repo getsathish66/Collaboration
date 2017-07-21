@@ -3,6 +3,8 @@ package com.niit.back.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.back.dao.ForumDAO;
 import com.niit.back.model.Forum;
+import com.niit.back.model.User;
 
 @RestController
 public class ForumController {
@@ -48,13 +51,20 @@ public class ForumController {
 
 		return new ResponseEntity(forum, HttpStatus.OK);
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	@PostMapping(value = "/forum")
-	public ResponseEntity createForum(@RequestBody Forum forum) {
+	public ResponseEntity createForum(@RequestBody Forum forum,HttpSession session) {
 		forum.setCreatedate(new Date());
-
+forum.setStatus("NA");
+		
+		User user = (User) session.getAttribute("user");   
+		
+		forum.setUserId(user.getUserId());
+		forum.setUsername(user.getUsername());
+		forum.setEmail(user.getEmail());
 		forumDAO.saveOrUpdate(forum);
-        return new ResponseEntity(forum, HttpStatus.OK);
+		
+		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

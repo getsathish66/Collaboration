@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.back.dao.UserDAO;
@@ -104,4 +106,18 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			Error error = new Error("Unauthorized user.. Please Login..");
+			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+		} else {
+			// user.setOnline(false);
+			userDAO.saveOrUpdate(user);
+			session.removeAttribute("user");
+			session.invalidate();
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+}
 }

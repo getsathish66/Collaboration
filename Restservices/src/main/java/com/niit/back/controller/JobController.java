@@ -3,6 +3,8 @@ package com.niit.back.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.back.dao.JobDAO;
 import com.niit.back.model.Job;
+import com.niit.back.model.User;
 
 @RestController
 public class JobController {
@@ -49,9 +52,14 @@ public class JobController {
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping(value = "/job")
-	public ResponseEntity createjob(@RequestBody Job job) {
+	public ResponseEntity createjob(@RequestBody Job job,HttpSession session) {
 		job.setPostdate(new Date());
-
+		job.setStatus("A");
+		User user = (User) session.getAttribute("user");   
+		
+		job.setUserId(user.getUserId());
+		job.setUsername(user.getUsername());
+		job.setEmail(user.getEmail());
 		jobDAO.saveOrUpdate(job);
 
 		return new ResponseEntity(job, HttpStatus.OK);
