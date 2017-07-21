@@ -39,7 +39,7 @@ public class BlogDAOTest {
 		blog.setLikes(4);
 		blog.setStatus("nul");
 		blog.setTitle("title");
-		blog.setUserid(5);
+		blog.setUserId(5);
 		
 		blogDAO.saveOrUpdate(blog);
 

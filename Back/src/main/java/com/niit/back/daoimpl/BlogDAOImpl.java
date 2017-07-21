@@ -37,17 +37,24 @@ public class BlogDAOImpl implements BlogDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(blog);
 		return blog;
 	}
+	
+	@Transactional
+	public Blog Update(Blog blog) {
+
+		sessionFactory.getCurrentSession().update(blog);
+		return blog;
+	}
 
 	@Transactional
-	public void delete(int blogId) {
+	public void delete(int blogid) {
 		Blog blogToDelete = new Blog();
-		blogToDelete.setBlogid(blogId);
+		blogToDelete.setBlogid(blogid);
 		sessionFactory.getCurrentSession().delete(blogToDelete);
 	}
 
 	@Transactional
-	public Blog getById(int blogId) {
-		Blog BlogId = (Blog) sessionFactory.getCurrentSession().get(Blog.class, blogId);
+	public Blog getById(int blogid) {
+		Blog BlogId = (Blog) sessionFactory.getCurrentSession().get(Blog.class, blogid);
 
 		return BlogId;
 	}

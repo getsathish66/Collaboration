@@ -2,6 +2,7 @@ package com.niit.back.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,10 +19,14 @@ public class Job {
 	@GeneratedValue
     private int jobid;	
 	private String jobprofile;
+	@Column(length=2000)
 	private String jobdesc;
 	private String qualification;
 	private String status;
     private Date postdate;
+    private int userId;
+	private String username;
+	private String email;
     
 	public int getJobid() {
 		return jobid;
@@ -59,6 +64,26 @@ public class Job {
 	public void setPostdate(Date postdate) {
 		this.postdate = postdate;
 	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 
     
 }

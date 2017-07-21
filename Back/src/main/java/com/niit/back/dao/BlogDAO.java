@@ -9,6 +9,8 @@ public interface BlogDAO {
 	public List<Blog> list();
 
 	public Blog saveOrUpdate(Blog blog);
+	
+	public Blog Update(Blog blog);
 
 	public void delete(int blogId);
 

@@ -37,7 +37,7 @@ public class ForumDAOTest {
 		forum.setForumcontent("placement");
 		forum.setForumname("jobs");
 		forum.setStatus("n");
-		forum.setUserid(5);
+		forum.setUserId(5);
 		
 		forumDAO.saveOrUpdate(forum);
 
