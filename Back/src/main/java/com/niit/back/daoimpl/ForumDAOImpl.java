@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.back.dao.ForumDAO;
+import com.niit.back.model.Blog;
 import com.niit.back.model.Forum;
 
 @Repository("ForumDAO")
@@ -56,6 +57,14 @@ public class ForumDAOImpl implements ForumDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(forum);
         return forum;
 	}
+	
+	@Transactional
+	public Forum Update(Forum forum) {
+
+		sessionFactory.getCurrentSession().update(forum);
+		return forum;
+	}
+
 	
 	@Transactional
 	public List<Forum> getAcceptedList() {

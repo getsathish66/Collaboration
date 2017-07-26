@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.back.dao.AppliedjobsDAO;
 import com.niit.back.dao.BlogDAO;
 import com.niit.back.dao.CommentDAO;
 import com.niit.back.dao.EventDAO;
@@ -21,6 +22,7 @@ import com.niit.back.dao.FriendDAO;
 import com.niit.back.dao.JobDAO;
 import com.niit.back.dao.MychatDAO;
 import com.niit.back.dao.UserDAO;
+import com.niit.back.daoimpl.AppliedjobsDAOImpl;
 import com.niit.back.daoimpl.BlogDAOImpl;
 import com.niit.back.daoimpl.CommentDAOImpl;
 import com.niit.back.daoimpl.EventDAOImpl;
@@ -29,6 +31,7 @@ import com.niit.back.daoimpl.FriendDAOImpl;
 import com.niit.back.daoimpl.JobDAOImpl;
 import com.niit.back.daoimpl.MychatDAOImpl;
 import com.niit.back.daoimpl.UserDAOImpl;
+import com.niit.back.model.Appliedjobs;
 import com.niit.back.model.Blog;
 import com.niit.back.model.Comment;
 import com.niit.back.model.Event;
@@ -86,6 +89,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(Mychat.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(Event.class);
+		sessionBuilder.addAnnotatedClass(Appliedjobs.class);
 
 
 		return sessionBuilder.buildSessionFactory();
@@ -142,5 +146,10 @@ public class ApplicationContextConfig {
 	@Bean(name = "EventDAO")
 	public EventDAO getEventDAO(SessionFactory sessionFactory) {
 		return new EventDAOImpl(sessionFactory);
+	}
+	@Autowired(required = true)
+	@Bean(name = "AppliedjobsDAO")
+	public AppliedjobsDAO getAppliedjobsDAO(SessionFactory sessionFactory) {
+		return new AppliedjobsDAOImpl(sessionFactory);
 	}
 }
