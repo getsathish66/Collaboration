@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.back.dao.ForumDAO;
+import com.niit.back.model.Blog;
 import com.niit.back.model.Forum;
 import com.niit.back.model.User;
 
@@ -98,5 +99,13 @@ forum.setStatus("NA");
 	public ResponseEntity<List<Forum>> notAcceptedForumList() {
 		List<Forum> listforum = forumDAO.getNotAcceptedList();
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PutMapping("/acceptForum")
+	public ResponseEntity acceptForum(@RequestBody Forum forum) {
+		forum.setStatus("A");
+		forumDAO.Update(forum);
+		return new ResponseEntity(forum, HttpStatus.OK);
 	}
 }
