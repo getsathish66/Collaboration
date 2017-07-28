@@ -3,8 +3,34 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Cursive;font-size:12pt;color:#000000;}
+input.html-text-box {background-color:#ffffff;font-family:Cursive;font-size:12pt;color:#000000;}
+h3,h4{
+color:white;
+}
+</style>
 </head>
 <body>
+<br>
+<br>
+<button type="button"><span style="float: center;">
+   <<!-- a class="btn btn-info" href="#!blog" ng-show="currentUser.username">Create New Blog</a> --></span></button>
 
+<div class="col-sm-3 col-sm-offset-1" style="width:600px;heigth:700px;border:5px solid grey; float: left; margin-left: 1.5em;" >
+
+<h3 style="color:white;">{{ViewForum.forumname}}</h3>
+<h3>{{ViewForum.createdate}}</h3>
+<h4>{{ViewForum.forumcontent}}</h4>
+
+<!-- HTML Codes by Quackit.com -->
+
+<button type="button" ng-click="fcc.accept(ViewForum)" color="blue">Approve</button>    
+<button type="button" ng-click="fcc.rejectForum(ViewForum)">Reject</button>
+
+
+
+</div>
+ 
 </body>
 </html>

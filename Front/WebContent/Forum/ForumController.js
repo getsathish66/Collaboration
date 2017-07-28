@@ -1,8 +1,8 @@
 'use strict';
 
-app.controller('ForumController',['$scope', '$location', 'ForumService','$rootScope', '$http',
+app.controller('ForumController',['$scope', '$location', '$cookieStore','ForumService','$rootScope', '$http',
 
-	function($scope, $location, ForumService,$rootScope,$http) {
+	function($scope, $location, $cookieStore, ForumService,$rootScope,$http) {
 
 	console.log("ForumController...")
 
@@ -23,8 +23,11 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
     self.remove = remove;
 
     self.reset = reset;
-
-    self.get = get;
+	self.accept = accept;
+	self.rejectForum = rejectForum;
+	self.get = get;
+    self.adminDetails=adminDetails;
+    self.forumDetails=forumDetails;
 
     
 
@@ -113,7 +116,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 
 
 
-    function deleteforum(id){
+    /*function deleteforum(id){
 
     	ForumService.deleteForum(id)
 
@@ -130,7 +133,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
         );
 
     }
-
+*/
     
 
     function edit(id){
@@ -211,6 +214,42 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 
    };
 
+   function adminDetails(forum) {
+		$scope.bvv = forum;
+		console.log($scope.bvv);
+		$rootScope.ViewForum = $scope.bvv;
+		$location.path('/adminForum')
+	}
+	
+	function forumDetails(forum) {
+		$scope.bvv = forum;
+		console.log($scope.bvv);
+		$rootScope.ViewForum = $scope.bvv;
+		$location.path('/forumdetails')
+	}
+	
+	function accept(ViewForum) {
+		{
+			console.log('accept the Forum details')
+
+			ForumService.accept(ViewForum);
+			console.log(ViewForum)
+			$location.path("/admin")
+		}
+
+	};
+	
+	function rejectForum(ViewForum){
+    	ForumService.deleteForum(ViewForum.forumid).then(function(d) {
+			self.deleteBlogRequestId = d;		    			
+			console.log(self.deleteBlogRequestId);
+    			$location.path("/admin")
+    	}, function(errResponse){
+                console.error('Error while deleting BlogRequest');
+            });
+    };
+	
+   
     function reset(){
 
     	self.forum={forumid : 'null',forumname:'',title : '',status : '',description : '',createdate : '',username:'',likes:'',userid:''};

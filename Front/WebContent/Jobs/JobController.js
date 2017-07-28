@@ -1,7 +1,7 @@
 'use strict';
 
-app	.controller('JobController',['JobService','$location', '$rootScope',
-						function(JobService,  $location, $rootScope) {
+app	.controller('JobController',['JobService','$location', '$rootScope','$http','$cookieStore','$scope',
+						function(JobService,  $location, $rootScope,$http,$cookieStore,$scope) {
 							console.log("JobController...")
 							var self = this;
 
@@ -12,30 +12,32 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 								errorMessage : ''*/
 							};
 							this.jobs = [];
+							self.jobDetails=jobDetails;
+							self.adminDetails=adminDetails;
 							
 							this.applyForJob = applyForJob
 
-							function applyForJob(jobid) {
+							function applyForJob(job) {
 								console.log("applyForJob");
 								var currentUser = $rootScope.currentUser
-								console.log("currentUser.id:" + currentUser.id)
+								console.log("currentUser.id:" + currentUser.userId)
 								//if(currentUser) -> not null, not empty and defined
 								
-								if (typeof currentUser.id == 'undefined') 
+								if (typeof currentUser.userId == 'undefined') 
 									{
 									   alert("Please login to apply for the job")
 	                                     console.log("User not logged in.  Can not apply for job")
-	                                     /*$location
-											.path('/login');*/
+	                                     $location
+											.path('/Loginpage');
 									   return
 									
 									}
-								console.log("->userID :" + currentUser.id
-										+ "  applying for job:" + jobid)
+								console.log("->userID :" + currentUser.userId
+										+ "  applying for job:" + job)
 										
 										
 								JobService
-										.applyForJob(jobid)
+										.applyForJob(job)
 										.then(
 												function(data) {
 													self.job = data;
@@ -45,6 +47,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 													console
 															.error('Error while applying for job request');
 												});
+								$location.path("/")
 
 							}
 
@@ -160,6 +163,20 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 															.error('Error while fetching blog details');
 												});
 							};
+							
+							function adminDetails(job) {
+								$scope.bvv = job;
+								console.log($scope.bvv);
+								$rootScope.ViewJob = $scope.bvv;
+								$location.path('/adminJob')
+							}
+							
+							function jobDetails(job) {
+								$scope.bvv = job;
+								console.log($scope.bvv);
+								$rootScope.ViewJob = $scope.bvv;
+								$location.path('/jobdetails')
+							}
 
 							self.reset = function() {
 								console.log('resetting the Job');

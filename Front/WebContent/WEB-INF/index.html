@@ -231,7 +231,23 @@ body {
 
 <script type="text/javascript" src="Jobs/JobService.js"></script>
 
+<!-- <script type="text/javascript" src="Friend/FriendController.js"></script>
+ -->
+<script type="text/javascript" src="Friend/FriendService.js"></script>
+
+<script type="text/javascript" src="Chat/ChatController.js"></script>
+
+<script type="text/javascript" src="Chat/ChatService.js"></script>
+
+<script src="JS/sockjs.js"></script>
+
+<script src="JS/stomp.js"></script>
+
+
 </head>
+<marquee direction="right"><h3 style="color:orange"><div ng-show="currentUser.username">
+Welcome {{currentUser.username}}
+</div></h3></marquee>
 <body background="Resources/images/pexels-photo1.jpg" ng-app="myApp" ng-controller="UserController as uc">
 
 
@@ -268,9 +284,25 @@ body {
 		</li>
 		</ul>
 	</nav>
-	<a1> <span class="text"><b>Friend</b></span> <span
+	<nav id="primary_nav_wrap">
+	<ul>
+	<li>
+	<a1> <span class="text" ng-show="currentUser.username"><b><a href="#!userlist">Friend</a></b></span> <span
 		class="line -right"></span> <span class="line -top"></span> <span
 		class="line -left"></span> <span class="line -bottom"></span> </a1>
+		<ul>
+					<li><a1 style="letter-spacing:0.05em;font-size:0.95em;">
+						<a style="color: rgb(249, 255, 1);" href="#!find">Add
+							Friend</a></a1></li>
+					<li><a1 style="letter-spacing:0.05em;font-size:0.95em;">
+						<a style="color: rgb(249, 255, 1);" href="#!chat">Chat
+							Friend</a></a1></li></li>
+		</ul>
+		</li>
+		</ul>
+	</nav>
+		
+		
 	<a1> <span class="text"><b><a style="color: white;"
 			href="#!Addjobs">Jobs</a></b></span> <span class="line -right"></span> <span
 		class="line -top"></span> <span class="line -left"></span> <span
@@ -294,5 +326,6 @@ body {
 
 
 	<div ng-view></div>
+	
 </body>
 </html>

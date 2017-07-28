@@ -4,12 +4,12 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
 	
 	console.log("JobService...")
 	
-    var BASE_URL = 'http://localhost:8083/Restservices/';
+    var BASE_URL = 'http://localhost:8085/Restservices/';
 		
     return {
          
-		applyForJob: function(jobid) {
-                    return $http.post(BASE_URL+"/applyForJob/"+jobid)
+		applyForJob: function(job) {
+                    return $http.post(BASE_URL+'/jobapply',job)
                             .then(
                                     function(response){
                                         return response.data;

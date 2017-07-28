@@ -19,16 +19,13 @@ color:white;
 
 <div class="col-sm-3 col-sm-offset-1" style="width:600px;heigth:700px;border:5px solid grey; float: left; margin-left: 1.5em;" >
 
-<h3 style="color:white;">{{ViewBlog.blogname}}</h3>
-<h3>{{ViewBlog.title}}</h3>
-<h4>{{ViewBlog.description}}</h4>
+<h3 style="color:white;">{{ViewForum.forumname}}</h3>
+<h3>{{ViewForum.createdate}}</h3>
+<h4>{{ViewForum.forumcontent}}</h4>
 
 <!-- HTML Codes by Quackit.com -->
 
-<button type="button" ng-click="bcc.accept(ViewBlog)" color="blue">Approve</button>    
-<button type="button" ng-click="bcc.rejectBlog(ViewBlog)">Reject</button>
-
-
+<form method="post" action="http://"><textarea name="comments" cols="30" rows="5" class="html-text-box">Comments here...</textarea><br><input type="submit" value="Submit" class="html-text-box"><input type="reset" value="Reset" class="html-text-box"></form>
 
 </div>
  

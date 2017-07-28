@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  a:link {
+    color: red;
+}
+  </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-sm-4" style="background-color:rgba(0, 234, 255, 0.47);">
+    <h3>Add Friends</h3>
+    <div ng-init="lc.fetchAllUsers()">
+    <div ng-repeat="all in lc.asd" ng-if="all.username != currentUser.username" >
+    <nav style="center">
+<table>
+<th><h1><span ng-bind="all.username"></span>  </h1></th>
+<tr>
+<td><a href="" ng-click="lc.send(all)"><button type="button" class="button"">Add Friend</button></a></td>
+
+</tr>
+</table>
+</nav></div></div>      
+    </div>
+    <div class="col-sm-4" style="background-color:rgba(255, 91, 91, 0.47);">
+    <h3>Requested Friend</h3>
+    <div ng-init="lc.requestedFriend()"> 
+
+<div  ng-repeat="req in lc.reqFriend" ng-if="req.username != currentUser.username">
+<nav style="center">
+<table>
+<th><h1><span ng-bind="req.username"></span>  </h1></th>
+<tr>
+<td><a href="" ng-click="lc.acceptFriend(req)"><button type="button" class="button"">Accept</button></a></td>
+<td><a href="" ng-click="lc.deleteFriendRequest(req)"><button type="button" class="button"">Reject</button></a></td>
+</tr>
+</table>
+</nav>
+</div></div></div>
+         
+    
+    <div class="col-sm-4" style="background-color:rgba(0, 234, 255, 0.47);">
+    <h3>Your Friends</h3>
+    <div ng-init="lc.AcceptedFriendCurrentUser()"> 
+    <div  ng-repeat="acc in lc.accFriend">
+    <table>
+<th><h1><span ng-bind="acc.username"></span>  </h1></th>
+<tr>
+</tr>
+</table>
+</nav>
+</div>
+<div  ng-repeat="acc in lc.accFriend1">
+<nav style="center">
+<table>
+<th><h1><span ng-bind="acc.friendname"></span>  </h1></th>
+<tr>
+</tr>
+</table>
+</nav>
+</div></div>
+    
+      
+    </div>
+  </div>
+</div>
+    </div>
+</body>
+</html>

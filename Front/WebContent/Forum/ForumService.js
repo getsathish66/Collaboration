@@ -6,7 +6,7 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 	console.log("forumService...")
 
-    var BASE_URL = 'http://localhost:8083/Restservices';
+    var BASE_URL = 'http://localhost:8085/Restservices';
 
 
 
@@ -22,10 +22,10 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 		        notAcceptedForums : notAcceptedForums,
 
-				//accept: accept,
+				accept: accept,
+			
 
-		        deleteForum:deleteForum
-
+				deleteForum:deleteForum
 		    };
 
 		 
@@ -123,11 +123,11 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 		 
 
-		    function deleteForum(id) {
+		    function deleteForum(forumid) {
 
 		    	console.log("Deleting Forum Request");
 
-				return $http.delete(BASE_URL + '/deleteForum/'+id).then(function(response){
+				return $http.delete(BASE_URL + '/forum/'+ forumid).then(function(response){
 
 						
 
@@ -143,6 +143,17 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 
 		
 
+			};
+			
+			function accept(Forum) {
+				console.log("calling accept Blogs ")
+				return $http.put(BASE_URL +'/acceptForum', Forum) 
+				.then(function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.error('Error while accepting Forum');
+					return $q.reject(errResponse);
+				});
 			};
 
 

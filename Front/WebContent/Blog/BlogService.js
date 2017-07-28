@@ -6,7 +6,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 
 	console.log("blogService...")
 
-    var BASE_URL = 'http://localhost:8083/Restservices/';
+    var BASE_URL = 'http://localhost:8085/Restservices/';
 
 
 

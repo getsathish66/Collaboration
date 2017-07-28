@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
 	
 	
 	.when('/', {
-		templateUrl : 'Blog/Viewblog.html'
+		templateUrl : 'User/Home.html'
 		
 
 	})
@@ -55,8 +55,20 @@ app.config(function($routeProvider) {
 		controllerAs : 'fcontrol'
 	})
 	
+	.when('/forumdetails', {
+		templateUrl : 'Forum/Forumdetails.html',
+		controller : 'ForumController',
+		controllerAs : 'u'
+	})
+	
 	.when('/Addjobs', {
 		templateUrl : 'Jobs/Jobform.html',
+		controller : 'JobController',
+		controllerAs : 'jcontrol'
+	})
+	
+	.when('/Viewjobs', {
+		templateUrl : 'Jobs/Viewjob.html',
 		controller : 'JobController',
 		controllerAs : 'jcontrol'
 	})
@@ -71,6 +83,37 @@ app.config(function($routeProvider) {
 		templateUrl : 'Admin/Forum.html',
 		controller : 'ForumController',
 		controllerAs : 'fcc'
+	})
+	
+	.when('/adminJob', {
+		templateUrl : 'Admin/Job.html',
+		controller : 'JobController',
+		controllerAs : 'jcc'
+	})
+	
+	.when('/jobdetails', {
+		templateUrl : 'Jobs/Jobdetails.html',
+		controller : 'JobController',
+		controllerAs : 'u'
+	})
+	
+	.when('/userlist', {
+		templateUrl : 'Friend/Viewusers.html',
+		controller : 'UserController',
+		controllerAs : 'fl'
+	})
+	
+	.when('/find', {
+		templateUrl : 'User/Viewusers.html',
+		controller : 'UserController',
+		controllerAs : 'lc'
+		
+			
+	})
+	
+	.when('/chat', {
+		templateUrl : 'Chat/Chat.html',
+		controller : 'ChatController'
 	})
 	
 	.when('/admin', {

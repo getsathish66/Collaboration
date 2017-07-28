@@ -19,14 +19,12 @@ color:white;
 
 <div class="col-sm-3 col-sm-offset-1" style="width:600px;heigth:700px;border:5px solid grey; float: left; margin-left: 1.5em;" >
 
-<h3 style="color:white;">{{ViewBlog.blogname}}</h3>
-<h3>{{ViewBlog.title}}</h3>
-<h4>{{ViewBlog.description}}</h4>
+<h3 style="color:white;">{{ViewJob.jobprofile}}</h3>
+<h3>{{ViewJob.qualification}}</h3>
+<h4>{{ViewJob.jobdesc}}</h4>
+<button type="button" name="submit" value="applyjob" class="btn btn-success btn-icon" ng-click="u.applyForJob(ViewJob)" ><i class="fa fa-check"></i> Apply</button>
 
 <!-- HTML Codes by Quackit.com -->
-
-<button type="button" ng-click="bcc.accept(ViewBlog)" color="blue">Approve</button>    
-<button type="button" ng-click="bcc.rejectBlog(ViewBlog)">Reject</button>
 
 
 
