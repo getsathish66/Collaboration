@@ -5,14 +5,20 @@
     <title>Chat</title>
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-   <!--  <link href="assets/common/portfolio.css" rel="stylesheet"> -->
+    <link href="assets/common/portfolio.css" rel="stylesheet">
+    <style type="text/css">
+    .row {
+    margin-right: -130px;
+    margin-left: 300px;
+}
+    </style>
   </head>
   <body>
 
     <header class="container">
       <div id="heading" class="masthead">
         
-        <h2>Chat <small>Online Chat Room</small></h2>
+        
        
       </div>
    </header>
@@ -20,7 +26,7 @@
    <section class="main container">
      <div class="row">
     	<div class="col-md-12">
-	   		<p class="lead">Type in the box below to start a chat!</p>
+	   		
 	   		
 	   	</div> 
      
@@ -28,7 +34,7 @@
    	
    	
    	<div class="row">
-   		<div class="col-md-12">
+   		<div class="col-md-6">
    		
    			<form role="form" id="chatForm" ng-submit="sendMessage(chat)">
           <div class="alert alert-info notification" id="joinedChat" ng-if="latestUser" ng-animate="{enter: 'fade', leave: 'fade'}">
@@ -46,7 +52,7 @@
   			    <label for="message">Message {{currentUser.username}}</label>
   			    <textarea class="form-control focus-on-click" name="message" placeholder="Message..." rows="3" ng-model="chat.message"></textarea>
   			  </div>
-  			  <input type="submit" ng-focus="focus-on-click" name="send" class="btn btn-primary" value="Send.." />
+  			  <input type="submit" ng-focus="focus-on-click" name="send" class="btn btn-primary" value="Send message" />
    			</form>
    		
    		</div>
@@ -54,13 +60,14 @@
    	</div>
    	
    	<div class="row">
-   		<div class="col-md-12" id="chats" >
+   		<div class="col-md-6" id="chats" >
    			<div ng-repeat="chat in chats | reverse" class="chat {{chat.direction}}" ng-class="{'broadcast': chat.broadcast}">
           		<span class="from">
-		        	{{chat.from}}
+		        	<h3 style="color:red;">{{chat.from}}</h3>
 		       		<small ng-if="chat.broadcast">BROADCAST</small>
+		       		<span  class="message"><h4 style="color:#00ff04;">{{chat.message}}</h4></span>
 		        </span>
-		        <span style="color:white;" class="message">{{chat.message}}</span>
+		        
 		    </div>
    		</div>
    		
@@ -73,3 +80,14 @@
    
     </body>
 </html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
