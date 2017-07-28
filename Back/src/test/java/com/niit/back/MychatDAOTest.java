@@ -1,4 +1,4 @@
-package com.niit.back;
+/*package com.niit.back;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,3 +42,4 @@ public class MychatDAOTest {
 
 
 }
+*/

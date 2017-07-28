@@ -1,4 +1,4 @@
-package com.niit.back.daoimpl;
+/*package com.niit.back.daoimpl;
 
 import java.util.List;
 
@@ -76,3 +76,4 @@ public class MychatDAOImpl implements MychatDAO {
 
 	
 }
+*/

@@ -34,7 +34,7 @@ public class FriendDAOTest {
 	@Test
 	public void createFriendDAOTest() {
 
-		friend.setUserid(7);
+		friend.setUserId(7);
 		friend.setStatus("P");
 		
 		friendDAO.saveOrUpdate(friend);

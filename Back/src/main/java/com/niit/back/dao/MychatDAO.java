@@ -1,4 +1,4 @@
-package com.niit.back.dao;
+/*package com.niit.back.dao;
 
 import java.util.List;
 
@@ -18,3 +18,4 @@ public interface MychatDAO {
 
 	public void insert(Mychat mychat);
 }
+*/

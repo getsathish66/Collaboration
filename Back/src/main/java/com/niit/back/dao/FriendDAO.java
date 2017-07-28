@@ -9,6 +9,8 @@ public interface FriendDAO {
 
 	public List<Friend> getByUser(int userId);
 
+	public List<Friend> getByUser1(int userId);
+
 	public List<Friend> getByName(String username);
 
 	public List<Friend> getByFriendName(String username);

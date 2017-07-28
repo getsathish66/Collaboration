@@ -20,7 +20,6 @@ import com.niit.back.dao.EventDAO;
 import com.niit.back.dao.ForumDAO;
 import com.niit.back.dao.FriendDAO;
 import com.niit.back.dao.JobDAO;
-import com.niit.back.dao.MychatDAO;
 import com.niit.back.dao.UserDAO;
 import com.niit.back.daoimpl.AppliedjobsDAOImpl;
 import com.niit.back.daoimpl.BlogDAOImpl;
@@ -29,16 +28,15 @@ import com.niit.back.daoimpl.EventDAOImpl;
 import com.niit.back.daoimpl.ForumDAOImpl;
 import com.niit.back.daoimpl.FriendDAOImpl;
 import com.niit.back.daoimpl.JobDAOImpl;
-import com.niit.back.daoimpl.MychatDAOImpl;
 import com.niit.back.daoimpl.UserDAOImpl;
 import com.niit.back.model.Appliedjobs;
 import com.niit.back.model.Blog;
+import com.niit.back.model.Chat;
 import com.niit.back.model.Comment;
 import com.niit.back.model.Event;
 import com.niit.back.model.Forum;
 import com.niit.back.model.Friend;
 import com.niit.back.model.Job;
-import com.niit.back.model.Mychat;
 import com.niit.back.model.User;
 
 
@@ -86,7 +84,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
-		sessionBuilder.addAnnotatedClass(Mychat.class);
+		sessionBuilder.addAnnotatedClass(Chat.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(Event.class);
 		sessionBuilder.addAnnotatedClass(Appliedjobs.class);
@@ -132,11 +130,11 @@ public class ApplicationContextConfig {
 		return new FriendDAOImpl(sessionFactory);
 	}
  
-	@Autowired(required = true)
+	/*@Autowired(required = true)
 	@Bean(name = "MychatDAO")
 	public MychatDAO getMychatDAO(SessionFactory sessionFactory) {
 		return new MychatDAOImpl(sessionFactory);
-	}
+	}*/
 	@Autowired(required = true)
 	@Bean(name = "CommentDAO")
 	public CommentDAO getCommentDAO(SessionFactory sessionFactory) {
